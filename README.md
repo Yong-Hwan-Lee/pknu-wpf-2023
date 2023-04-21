@@ -29,4 +29,4 @@ Windows Presentation Foundation
 
 4일차 MVVM View
 
-<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/images/wpf01.png?raw=true" width ="700" />
+<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/image/wpf01.png?raw=true" width ="700" />
