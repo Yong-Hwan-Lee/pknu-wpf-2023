@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:wp05_bikeshop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/BrushDictionary.xaml" />
     </Application.Resources>
 </Application>
