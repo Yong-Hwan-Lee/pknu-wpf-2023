@@ -56,7 +56,32 @@ Windows Presentation Foundation
 			- 화면정리
 			- youtube OpenAPI
 			- CefSharp.wpf
-			- DB 데이터바인딩
+			- DB 데이터바인딩 (SQL Server)
 		
-7일차 영화검색앱 중간
-<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/image/wpf04.gif?raw=true" width ="700" />
+
+## 8일차
+- WPF 응용
+	- 영화검색앱 완료
+		- DB 데이터바인딩 (MySQL)
+	- 미세먼지확인 앱 개발
+		- MahApps.Metro
+		- 데이터포털 OpenAPI
+		- DB 데이터바인딩(MySQL)
+
+영화검색앱
+		
+<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/image/wpf05.gif?raw=true" width ="700" />
+
+미세먼지 확인앱 중간
+<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/image/wpf06.png?raw=true" width ="700" />
+
+## 9일차
+- WPF 응용
+	- 미세먼지확인 앱 완료
+		- MahApps.Metro
+		- 데이터포털 OpenAPI
+		- DB 데이터바인딩(MySQL)
+	- 개인 포토폴리오 개발방식
+		- 데이터포털 OpenAPI
+		- 네이버, 카카오 OpenAPI
+		- 기타 OpenAPI

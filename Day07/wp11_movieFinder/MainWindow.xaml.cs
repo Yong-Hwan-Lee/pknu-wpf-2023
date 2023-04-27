@@ -483,7 +483,7 @@ namespace wp11_movieFinder
                     if (delRes == GrdResult.SelectedItems.Count)
                     {
                         await Commons.ShowMessageAsync("삭제", "DB삭제 성공!!");
-                        StsResult.Content = $"즐겨찾기 {delRes} 건 삭제완료";
+                        StsResult.Content = $"즐겨찾기 {delRes} 건 삭제완료";    // 화면에 안나옴  
 
                     }
                     else
