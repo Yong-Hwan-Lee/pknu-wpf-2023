@@ -83,5 +83,9 @@ Windows Presentation Foundation
 		- DB 데이터바인딩(MySQL)
 	- 개인 포토폴리오 개발방식
 		- 데이터포털 OpenAPI
-		- 네이버, 카카오 OpenAPI
+		- 네이버, 구글, 카카오 OpenAPI
 		- 기타 OpenAPI
+		
+		
+미세먼지 확인앱 완료
+<img src="https://github.com/Yong-Hwan-Lee/pknu-wpf-2023/blob/main/image/wpf07.gif?raw=true" width ="700" />
