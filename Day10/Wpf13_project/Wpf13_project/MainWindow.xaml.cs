@@ -193,9 +193,9 @@ namespace Wpf13_project
                                             Lng,
                                             Confirm_date
                                         FROM trafficlightlocation
-                                        WHERE date_format(Timestamp, '%Y-%m-%d') = @Timestamp";
+                                        WHERE date_format(Confirm_date, '%Y-%m-%d') = @Confirm_date";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Timestamp", CboReqDate.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Confirm_date", CboReqDate.SelectedValue.ToString());
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds, "trafficlightlocation");
@@ -243,7 +243,7 @@ namespace Wpf13_project
             using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
             {
                 conn.Open();
-                var query = @"SELECT DATE_FORMAT(Timestamp,'%Y-%m-%d) AS Save_Date
+                var query = @"SELECT DATE_FORMAT(Confirm_date,'%Y-%m-%d') AS Save_Date
                                       FROM trafficlightlocation
                                        GROUP BY 1
                                         ORDER BY 1";
