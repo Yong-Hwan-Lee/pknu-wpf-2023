@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Wpf13_project
+namespace Wpf13_project1
 {
     /// <summary>
     /// MapWindow.xaml에 대한 상호 작용 논리
@@ -24,9 +24,9 @@ namespace Wpf13_project
         {
             InitializeComponent();
         }
-        public MapWindow(double lat,double lng) : this()
+        public MapWindow(string dabom_url) : this()
         {
-            BrsLocLight.Address = $"https://map.google.com/maps/place/{lat},{lng}";
+            BrsLocLight.Address = $"{dabom_url}";
         }
     }
 }

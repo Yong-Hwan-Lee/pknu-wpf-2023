@@ -23,6 +23,8 @@ using Wpf13_project.Models;
 using Newtonsoft.Json.Linq;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
+using System.Windows.Media.Converters;
+using CefSharp.DevTools.WebAuthn;
 
 namespace Wpf13_project
 {
@@ -40,7 +42,7 @@ namespace Wpf13_project
         
         private async void BtnReference_Click(object sender, RoutedEventArgs e)
         {
-            string openApiUri = "https://apis.data.go.kr/6260000/BusanTrafficLightInfoService/getWarningLightInfo?serviceKey=myBoxMMnVmVAd1WagamqC4MGu3klCbrVPo7RwKxHruybfCv%2FS02ivv8Ai2RziICOVkm221Q8FfQC4lkTJ9DznA%3D%3D&numOfRows=1000&resultType=json";
+            string openApiUri = "https://apis.data.go.kr/6260000/BusanTrafficLightInfoService/getWarningLightInfo?serviceKey=myBoxMMnVmVAd1WagamqC4MGu3klCbrVPo7RwKxHruybfCv%2FS02ivv8Ai2RziICOVkm221Q8FfQC4lkTJ9DznA%3D%3D&pageNo=1&numOfRows=5000&resultType=json";
             string result = string.Empty;
 
             WebRequest req = null;
@@ -77,18 +79,17 @@ namespace Wpf13_project
                     {
                         trafficLocations.Add(new TrafficLight
                         {
-                            Id=0,
-                            Mgrnu = Convert.ToInt32(location["Mgrnu"]),
-                            Road = Convert.ToString(location["Road"]),
-                            Ins_place = Convert.ToString(location["Ins_place"]),
-                            Gubun = Convert.ToString(location["Gubun"]),
-                            Ins_date = Convert.ToDateTime(location["Ins_date"]),
-                            Road_type = Convert.ToString(location["Road_type"]),
-                            Sigungu = Convert.ToString(location["Sigungu"]),
-                            Address = Convert.ToString(location["Address"]),
-                            Lat = Convert.ToDouble(location["Lat"]),
-                            Lng = Convert.ToDouble(location["Lng"]),
-                            Confirm_date = Convert.ToDateTime(location["Confirm_date"])
+                            Mgrnu = Convert.ToInt32(location["mgrnu"]),
+                            Road = Convert.ToString(location["road"]),
+                            Ins_place = Convert.ToString(location["ins_place"]),
+                            Gubun = Convert.ToString(location["gubun"]),
+                            Ins_date = Convert.ToDateTime(location["ins_date"]),
+                            Road_type = Convert.ToString(location["road_type"]),
+                            Sigungu = Convert.ToString(location["sigungu"]),
+                            Address = Convert.ToString(location["address"]),
+                            Lat = Convert.ToDouble(location["lat"]),
+                            Lng = Convert.ToDouble(location["lng"]),
+                            Confirm_date = Convert.ToDateTime(location["confirm_date"])
                         });
                     }
                     this.DataContext = trafficLocations;
@@ -120,7 +121,6 @@ namespace Wpf13_project
                                         Ins_place,
                                         Gubun,
                                         Ins_date,
-                                        new_tablecol,
                                         Road_type,
                                         Sigungu,
                                         Address,
@@ -147,17 +147,17 @@ namespace Wpf13_project
                             var item = temp as TrafficLight;
 
                             MySqlCommand cmd = new MySqlCommand(query, conn);
-                            cmd.Parameters.AddWithValue("@Mgrnu", item.Mgrnu);
-                            cmd.Parameters.AddWithValue("@Road", item.Road);
-                            cmd.Parameters.AddWithValue("@Ins_place", item.Ins_place);
-                            cmd.Parameters.AddWithValue("@Gubun", item.Gubun);
-                            cmd.Parameters.AddWithValue("@Ins_date", item.Ins_date);
-                            cmd.Parameters.AddWithValue("@Road_type", item.Road_type);
-                            cmd.Parameters.AddWithValue("@Sigungu", item.Sigungu);
-                            cmd.Parameters.AddWithValue("@Address", item.Address);
-                            cmd.Parameters.AddWithValue("@Lat", item.Lat);
-                            cmd.Parameters.AddWithValue("@Lng", item.Lng);
-                            cmd.Parameters.AddWithValue("@Confirm_date", item.Confirm_date);
+                            cmd.Parameters.AddWithValue("@mgrnu", item.Mgrnu);
+                            cmd.Parameters.AddWithValue("@road", item.Road);
+                            cmd.Parameters.AddWithValue("@ins_place", item.Ins_place);
+                            cmd.Parameters.AddWithValue("@gubun", item.Gubun);
+                            cmd.Parameters.AddWithValue("@ins_date", item.Ins_date);
+                            cmd.Parameters.AddWithValue("@road_type", item.Road_type);
+                            cmd.Parameters.AddWithValue("@sigungu", item.Sigungu);
+                            cmd.Parameters.AddWithValue("@address", item.Address);
+                            cmd.Parameters.AddWithValue("@lat", item.Lat);
+                            cmd.Parameters.AddWithValue("@lng", item.Lng);
+                            cmd.Parameters.AddWithValue("@confirm_date", item.Confirm_date);
 
                             insRes += cmd.ExecuteNonQuery();
                         }
@@ -173,15 +173,16 @@ namespace Wpf13_project
 
         }
 
-        private void CboReqDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Cbosigungu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CboReqDate.SelectedValue != null)
+            if (Cbosigungu.SelectedValue != null)
             {
-                //MessageBox.Show(CboReqDate.SelectedValue.ToString());
+                //MessageBox.Show(Cbosigungu.SelectedValue.ToString());
                 using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
                 {
                     conn.Open();
-                    var query = @"SELECT    Mgrnu,
+                    var query = @"SELECT    Id,
+                                            Mgrnu,
                                            Road,
                                            Ins_place,
                                             Gubun,
@@ -193,9 +194,9 @@ namespace Wpf13_project
                                             Lng,
                                             Confirm_date
                                         FROM trafficlightlocation
-                                        WHERE date_format(Confirm_date, '%Y-%m-%d') = @Confirm_date";
+                                        WHERE sigungu = @sigungu";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Confirm_date", CboReqDate.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@sigungu", Cbosigungu.SelectedValue.ToString());
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds, "trafficlightlocation");
@@ -218,6 +219,9 @@ namespace Wpf13_project
                             Confirm_date = Convert.ToDateTime(row["Confirm_date"])
                         });
                     }
+
+                    this.DataContext = trafficLocations;
+                    StsResult.Content = $"신호등 {trafficLocations.Count}개 조회완료";
 
                 }
             }
@@ -243,7 +247,7 @@ namespace Wpf13_project
             using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
             {
                 conn.Open();
-                var query = @"SELECT DATE_FORMAT(Confirm_date,'%Y-%m-%d') AS Save_Date
+                var query = @"SELECT sigungu AS Save_Date
                                       FROM trafficlightlocation
                                        GROUP BY 1
                                         ORDER BY 1";
@@ -257,9 +261,49 @@ namespace Wpf13_project
                     saveDateList.Add(Convert.ToString(row["Save_Date"]));
                 }
 
-                CboReqDate.ItemsSource = saveDateList;
+                Cbosigungu.ItemsSource = saveDateList;
 
             }
+        }
+
+        private async void BtnFind_Click(object sender, RoutedEventArgs e)
+        {
+        //    var FindWindow = new FindWindow();
+        //    FindWindow.Owner = this;
+        //    FindWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        //    FindWindow.ShowDialog();
+            if (GrdResult.SelectedItems.Count != 2)
+            {
+                await Commons.ShowMessageAsync("오류", "2개를 선택하세요");
+            }
+            else
+            {
+                // 경로표시
+                var selItem1 = GrdResult.SelectedItems[0] as TrafficLight;
+                var selItem2 = GrdResult.SelectedItems[1] as TrafficLight;
+                double lat1 = selItem1.Lat;
+                double lng1 = selItem1.Lng;
+                double lat2 = selItem2.Lat;
+                double lng2 = selItem2.Lng;
+                var findWindow = new FindWindow(selItem1.Lat, selItem1.Lng, selItem2.Lat, selItem2.Lng);
+                
+                //var selItem1 = GrdResult.SelectedItems[0] as TrafficLight;
+                //var selItem2 = GrdResult.SelectedItems[1] as TrafficLight;
+                //string ins_place1 = selItem1.Ins_place;
+                //string ins_place2 = selItem2.Ins_place;
+
+                //var findWindow = new FindWindow(selItem1.Ins_place, selItem2.Ins_place);               
+
+
+                // 창띄움
+                findWindow.Owner = this;
+                findWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                findWindow.ShowDialog();
+
+
+            
+            }
+            
         }
     }
 }

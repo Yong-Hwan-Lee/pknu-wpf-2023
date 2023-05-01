@@ -24,7 +24,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
 
@@ -33,10 +33,12 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="BtnReference" Content="조회" Width="100" Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnReference_Click"/>
                 <Button x:Name="BtnSaveData" Content="저장" Width="100" Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click"/>
-                <ComboBox x:Name="CboReqDate" Margin="5" Width="150" Style="{StaticResource MahApps.Styles.ComboBox}"
-                          mah:TextBoxHelper.Watermark="검색날짜 선택"
+                <ComboBox x:Name="Cbosigungu" Margin="5" Width="150" Style="{StaticResource MahApps.Styles.ComboBox}"
+                          mah:TextBoxHelper.Watermark="시군구 검색"
                           mah:TextBoxHelper.UseFloatingWatermark="True"
-                          mah:TextBoxHelper.ClearTextButton="True" SelectionChanged="CboReqDate_SelectionChanged"/>
+                          mah:TextBoxHelper.ClearTextButton="True" SelectionChanged="Cbosigungu_SelectionChanged"/>
+                <Button x:Name="BtnFind" Content="경로" Width="100" Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnFind_Click"/>
+
             </StackPanel>
 
         </Grid>

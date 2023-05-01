@@ -1,0 +1,18 @@
+﻿<mah:MetroWindow
+    x:Class="Wpf13_project1.FindWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf13_project1"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="현위치 목적지 경로" Height="450" Width="800">
+    <Grid>
+        <cefSharp:ChromiumWebBrowser x:Name="BrsLocLight" Address="http://map.google.com" Grid.RowSpan="2"/>
+
+
+    </Grid>
+</mah:MetroWindow>

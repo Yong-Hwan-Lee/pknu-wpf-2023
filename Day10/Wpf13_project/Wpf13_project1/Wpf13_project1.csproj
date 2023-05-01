@@ -7,7 +7,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E6D3C0D3-E2C3-4E7A-B50D-AE8F9C0A8233}</ProjectGuid>
+    <ProjectGuid>{C2CA7D18-2D69-43E5-981B-1E692A6011F4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Wpf13_project</RootNamespace>
     <AssemblyName>Wpf13_project</AssemblyName>
@@ -252,7 +252,8 @@
     <Compile Include="MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\TrafficLight.cs" />
+    <Compile Include="Models\ConcertReservation.cs" />
+    <Compile Include="Models\FavoriteConcert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

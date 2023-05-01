@@ -189,7 +189,8 @@ namespace wp12_finedustCheck
                 using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
                 {
                     conn.Open();
-                    var query = @"SELECT Dev_id,
+                    var query = @"SELECT Id,
+                                        Dev_id,
                                         Name,
                                         Loc,
                                         Coordx,
@@ -223,12 +224,14 @@ namespace wp12_finedustCheck
                             Pm10_after = Convert.ToInt32(row["pm10_after"]),
                             Pm25_after = Convert.ToInt32(row["pm25_after"]),
                             State = Convert.ToInt32(row["state"]),
-                            Timestamp = Convert.ToDateTime(row["tiemstamp"]),
+                            Timestamp = Convert.ToDateTime(row["timestamp"]),
                             Company_id = Convert.ToString(row["company_id"]),
                             Company_name = Convert.ToString(row["company_name"])
 
                         });
                     }
+                    this.DataContext = dustSensors;
+                    StsResult.Content = $"DB {dustSensors.Count}건 조회완료";
                      
                 }
             }

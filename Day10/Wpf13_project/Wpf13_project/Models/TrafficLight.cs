@@ -21,16 +21,16 @@ namespace Wpf13_project.Models
          * "confirm_date":"2020-12-31"
     */
         public int Id { get; set; }
-        public int Mgrnu { get;set; }
-        public string Road { get;set; }
-        public string Ins_place { get;set; }
-        public string Gubun { get;set; }
+        public int Mgrnu { get; set; }
+        public string Road { get; set; }
+        public string Ins_place { get; set; }
+        public string Gubun { get; set; }
         public DateTime Ins_date { get; set; }
-        public string Road_type { get;set; }
-        public string Sigungu { get;set; }
-        public string Address { get;set; }
-        public double Lat { get;set; }
-        public double Lng { get;set; } 
+        public string Road_type { get; set; }
+        public string Sigungu { get; set; }
+        public string Address { get; set; }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
         public DateTime Confirm_date { get; set; }
     }
 }
