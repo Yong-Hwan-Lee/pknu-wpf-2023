@@ -358,33 +358,33 @@ namespace Wpf13_project1
                 return;
             }
 
-            //List<FavoriteConcert> list = new List<FavoriteConcert>();
-            //foreach (ConcertReservation item in GrdResult.SelectedItems)
-            //{
-            //    var favoriteConcert = new FavoriteConcert
-            //    {
-            //        Id = item.Id,
-            //        res_no = item.res_no,
-            //        title = item.title,
-            //        op_st_dt = item.op_st_dt,
-            //        op_ed_dt = item.op_ed_dt,
-            //        op_at = item.op_at,
-            //        place_id = item.place_id,
-            //        place_nm = item.place_nm,
-            //        runtime = item.runtime,
-            //        showtime = item.showtime,
-            //        rating = item.rating,
-            //        price = item.price,
-            //        original = item.original,
-            //        casting = item.casting,
-            //        crew = item.crew,
-            //        avg_star = item.avg_star,
-            //        enterprise = item.enterprise,
-            //        dabom_url = item.dabom_url,
+            List<FavoriteConcert> list = new List<FavoriteConcert>();
+            foreach (ConcertReservation item in GrdResult.SelectedItems)
+            {
+                var favoriteConcert = new FavoriteConcert
+                {
+                    Id = item.Id,
+                    res_no = item.res_no,
+                    title = item.title,
+                    op_st_dt = item.op_st_dt,
+                    op_ed_dt = item.op_ed_dt,
+                    op_at = item.op_at,
+                    place_id = item.place_id,
+                   place_nm = item.place_nm,
+                   runtime = item.runtime,
+                    showtime = item.showtime,
+                    rating = item.rating,
+                    price = item.price,
+                    original = item.original,
+                    casting = item.casting,
+                   crew = item.crew,
+                   avg_star = item.avg_star,
+                    enterprise = item.enterprise,
+                    dabom_url = item.dabom_url,
 
-            //    };
-            //    list.Add(favoriteConcert);
-            //}
+               };
+                list.Add(favoriteConcert);
+            }
 
 
             try
@@ -435,7 +435,7 @@ namespace Wpf13_project1
                                     @dabom_url);
                                     ";
                     var insRes = 0;
-                    foreach (FavoriteConcert item in GrdResult.SelectedItems)
+                    foreach (FavoriteConcert item in list)
                     {
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@Id", item.Id);
